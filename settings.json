@@ -1,0 +1,18 @@
+{
+	"channelinventory" : [
+		{"id":<twitch channel id>,"hook":[0],"type":"twitch"}
+		
+	],
+	"filename" : "streams.js",
+	"apikey": "<twitch api key>",
+	"defaulturl": "< deafult url for links>",
+	"footer":{
+		"txt":"<default footer text for the embed>",
+		"logo":"< default footer icon for the embed>"
+	},
+	"embedColor":"< default color for the embed in hex >",
+	"showImage":false,
+	"hooks" : [
+		"< discord webhook >"
+	]
+}
