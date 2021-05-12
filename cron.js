@@ -1,7 +1,7 @@
 const https = require('follow-redirects').https;
 const fs = require('fs');
 const { Webhook, MessageBuilder } = require('discord-webhook-node');
-var config = require('./settings-itk.json');
+var config = require('./settings.json');
 const ytpath = '/embed/live_stream?autoplay=1&channel=';
 const twitchpath = '/kraken/streams/?channel=';
 
