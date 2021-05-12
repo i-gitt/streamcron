@@ -1,6 +1,6 @@
 {
 	"channelinventory" : [
-		{"id":<twitch channel id>,"hook":[0],"type":"twitch"}
+		{"id":<twitch channel id>,"hook":[0],"type":"< 'twicth' or 'yt' >"}
 		
 	],
 	"filename" : "streams.js",
@@ -13,6 +13,6 @@
 	"embedColor":"< default color for the embed in hex >",
 	"showImage":false,
 	"hooks" : [
-		"< discord webhook >"
+		"< discord webhook url>"
 	]
 }
