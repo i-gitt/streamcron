@@ -1,7 +1,7 @@
 const https = require('follow-redirects').https;
 const fs = require('fs');
 const { Webhook, MessageBuilder } = require('discord-webhook-node');
-var config = require('./settings.json');
+var config = require('./settings-itk.json');
 const ytpath = '/embed/live_stream?autoplay=1&channel=';
 const twitchpath = '/kraken/streams/?channel=';
 
@@ -64,6 +64,7 @@ function setYTItem(id,test){
 	yt.channel.logo = test.embedPreview.thumbnailPreviewRenderer.videoDetails.embeddedPlayerOverlayVideoDetailsRenderer.channelThumbnail.thumbnails[0].url;
 	yt.channel.url = "https://youtube.com/channel/"+id+"/live";
 	yt.channel['status'] = test.embedPreview.thumbnailPreviewRenderer.title.runs[0].text;
+	yt.channel._id = id;
 	yt.preview.medium = test.embedPreview.thumbnailPreviewRenderer.defaultThumbnail.thumbnails[4].url;
 	yt.channel.name = test.embedPreview.thumbnailPreviewRenderer.videoDetails.embeddedPlayerOverlayVideoDetailsRenderer.expandedRenderer.embeddedPlayerOverlayVideoDetailsExpandedRenderer.title.runs[0].text;
 	yt.iframe = "https://youtube.com"+ytpath+id;
@@ -147,7 +148,7 @@ function check(json,now){
 		itm="";
 		
 		now.streams.forEach(item => {
-			tempitem = config.channelinventory.find(chan => chan.id === item._id )
+			tempitem = config.channelinventory.find(chan => chan.id == item.channel._id )
 			item.hook = tempitem.hook;
 			if(json.streams.length>0){
 				found =false
@@ -198,7 +199,8 @@ function sendWebhook(item,imag = false){
 	
 	embed.payload.content = "is live on "+tmpurl;
 	for(i=0;i<item.hook.length;i++){
-		hook = new Webhook(config.hooks[i]);
+		console.log(item)
+		hook = new Webhook(config.hooks[item.hook[i]]);
 		hook.setUsername(item.channel.name);
 		hook.send(embed);
 	}
